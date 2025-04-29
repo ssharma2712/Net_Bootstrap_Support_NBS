@@ -14,26 +14,26 @@ The little bootstraps analyses have three different steps.
 <br />
 #### First step: 
 <br />
-The first step is to create little bootstrap replicates using the ``lb_sampler``  function in lb_sampler.R file. <br /><br /> 
+The first step is to create little bootstrap replicates using the ``PSU_MSA_generator``  function in the PSU_MSA_generator R file. <br /><br /> 
 
 ```
-lb_sampler(data_path,  g,  s,  r)
+PSU_MSA_generator(data_path,  g,  s,  r)
 
 
-data_path         : input sequence alignment in fasta format that will be used for little bootstrap analyses. 
+data_path         : input sequence alignment in fasta format that will be used for inferring phylogenies to estimate NBS. 
 
-g                 : a numeric value within the range (0.6<= g <= 0.9) that specifies the little sample size. The little sample size is equal to L^g where L is the sequence length determined from the input alignment.  
+g                 : a numeric value within the range (0.7<= g <= 0.9) that specifies the subsample size. The subsample size is equal to L^g where L is the length of the concatenated sequence alignment.  
 
-s                 : a numeric value that specifies the number of little samples. 
+s                 : a numeric value that specifies the number of subsamples. 
 
-r                 : a numeric value that specifies the number of replicates for each little sample.
+r                 : a numeric value that specifies the number of replicates for each subsample.
 ```
 <br />
 
 #### Second step:
 
 <br />
-In the second step, the maximum likelihood (ML) tree is inferred for each replicate dataset. We used the IQ-TREE software for all our ML tree inferences, which can be downloaded from http://www.iqtree.org/. Both Linux and Windows versions of IQ-TREE software are available. 
+In the second step, phylogenetic trees are inferred from these quasi-MSAs generated using PSU-MSA_generator. These phylogenies can be inferred using NJ or ML approaches using MEGA 12, IQTREE, or RAxML.  
 
 <br />
 
