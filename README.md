@@ -73,9 +73,9 @@ To perform the little bootstraps analyses on your local computer, please follow 
 1.	Download and install R (https://www.r-project.org/) and Rstudio (https://rstudio.com/products/rstudio/download/).<br />
 2.	Download ‘Codes’ directory on the local computer. <br />
 3.	In the Rstudio session, type ``setwd(“directory path”)`` to change the working directory to the folder that contains ``lb_sampler`` and ``lb_aggregator`` function<br />
-4.	Type ``source("lb_sampler.R")``, and ``source("lb_aggregator.R")`` or  ``source("lb_precision.R")`` to make these functions available in the global environment. <br />
+4.	Type ``source("PSU_MSA_generator.R")``, and ``source("PSU_bagging.R")`` to make these functions available in the global environment. <br />
 5.	Download and install an ML tree inference software (e.g., IQ-TREE). <br />
-6.	Install the following R packages if thay are not installed. 
+6.	Install the following R packages if they are not installed. 
 
 ```R
 install.packages("BiocManager")
@@ -87,7 +87,7 @@ install.packages("phangorn")
 
 <br />
 
-## Little Bootstraps Analyses for an Example Dataset:
+## Net Bootstrap Support (NBS) Estimation for an Example Dataset:
 
 <br />
 To perform the little bootstraps analyses on the example dataset, please follow these steps:<br /><br />
@@ -95,7 +95,7 @@ To perform the little bootstraps analyses on the example dataset, please follow 
 2.	Run the function in the R session by typing 
 
 ```R
-lb_sampler("~/Example/example.fasta", g = 0.9, s = 3, r = 3)
+PSU_MSA_generator("~/Example/example.fasta", g = 0.9, s = 3, r = 3)
 ```
 
 This function will create three directories in the working directory:
@@ -114,7 +114,7 @@ example_sub1rep2.fasta
 example_sub1rep3.fasta
 ```
 <br />
-3.	Infer ML phylogenetic tree for each replicate dataset using the IQTREE software. Users specify the substitution model and other tree inference settings subjectively for the software. For example, we used the IQTREE analysis for the replicate 1 dataset in Subsample1:<br />
+3.	Infer ML phylogenetic tree for each replicate dataset using any tree-building software. Users specify the substitution model and other tree inference settings subjectively for the software. For example, we used the IQTREE analysis for the replicate 1 dataset in Subsample1:<br />
 
 ``` 
 iqtree -s ~/Example/Subsample1/example_sub1rep1.fasta -m GTR+G5
@@ -124,15 +124,9 @@ Trees for replicate datasets will be stored in each Subsample directory. The tre
 4.	For the final step, type 
 
 ```R
-lb_aggregator("~/Example",".treefile", "~/Example/ex_candidate_tree.nwk", s = 3, r = 3,  output_tree = "example_output")
+PSU_bagging("~/Example",".treefile", "~/Example/ex_candidate_tree.nwk", s = 3, r = 3,  output_tree = "example_output")
 ```
 The function will output the candidate tree file with BCLs, and the name of the output tree file will be `` example_output.nwk``.<br />
-OR
-```R
-lb_precision("~/Example",".treefile", "~/Example/ex_candidate_tree.nwk", s = 3, r = 3, rep = 100 , output_tree = "example_output")
-```
-
-The function will output the candidate tree file with BCLs and another output tree with precision(SE), and the name of output tree files will be `` example_output.nwk`` and `` example_output_precision.nwk``.<br />
 
 <br />
 
