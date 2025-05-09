@@ -40,7 +40,7 @@ del            : a numeric value to specify the threshold of the change in the r
 To perform the analysis for estimating NBS on your local computer, please follow these steps:<br /><br />
 1.	Download and install R (https://www.r-project.org/) and Rstudio (https://rstudio.com/products/rstudio/download/).<br />
 2.	Download ‘Codes’ directory on the local computer. <br />
-3.	In the Rstudio session, type ``setwd(“directory path”)`` to change the working directory to the folder that contains ``lb_sampler`` and ``lb_aggregator`` function<br />
+3.	In the Rstudio session, type ``setwd(“directory path”)`` to change the working directory to the folder that contains ``NBS_automatic`` <br />
 4.	Type ``source("NBS_automatic.R")`` to make these functions available in the global environment. <br />
 5.	Download and install an ML tree inference software (e.g., IQ-TREE). <br />
 6.	Install the following R packages if they are not installed. 
@@ -55,11 +55,11 @@ install.packages("phangorn")
 
 <br />
 
-## Little Bootstraps Analyses for an Example Dataset:
+## Net Bootstrap Support estimation for an Example Dataset:
 
 <br />
-To perform the little bootstraps analyses on the example dataset, please follow these steps:<br /><br />
-1.	Download the ``Automatic`` directory on the local computer. <br />
+To perform the estimation of Net Bootstrap Support analyses on the example dataset, please follow these steps:<br /><br />
+1.	Download the GitHub directory on the local computer. <br />
 2.	Run the function in the R session by typing 
 
 ```R
